@@ -85,7 +85,7 @@ function Admin() {
       // 🔥 EDIT MODE
       if (editingItem) {
         const updated = await axios.put(
-          `http://localhost:3000/items/${editingItem.id}`,
+          `https://shiv-kripa-project.onrender.com/items/${editingItem.id}`,
           {
             title: values.title,
             description: values.description,
@@ -102,12 +102,15 @@ function Admin() {
         );
       } else {
         // 🔥 CREATE MODE (your old code)
-        const newItem = await axios.post("http://localhost:3000/items", {
-          title: values.title,
-          description: values.description,
-          image_url: imageUrl,
-          category_id: Number(values.category_id),
-        });
+        const newItem = await axios.post(
+          "https://shiv-kripa-project.onrender.com/items",
+          {
+            title: values.title,
+            description: values.description,
+            image_url: imageUrl,
+            category_id: Number(values.category_id),
+          },
+        );
 
         setItems((prev) => [newItem.data, ...prev]);
       }
@@ -125,7 +128,7 @@ function Admin() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/items/${id}`);
+      await axios.delete(`https://shiv-kripa-project.onrender.com/items/${id}`);
       setItems((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error(err);
